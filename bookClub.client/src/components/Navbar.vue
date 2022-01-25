@@ -43,6 +43,12 @@
           >
             Music
           </router-link>
+          <router-link
+            :to="{ name: 'Game' }"
+            class="btn text-success lighten-30 selectable text-uppercase"
+          >
+            Games
+          </router-link>
         </li>
       </ul>
       <span class="navbar-text">

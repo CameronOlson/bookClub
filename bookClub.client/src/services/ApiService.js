@@ -9,14 +9,6 @@ const booksApi = axios.create({
   baseURL: 'https://www.googleapis.com/books/v1/volumes?q='
 })
 class ApiService {
-  async getBooks() {
-    debugger
-    const res = await booksApi.get('' + key)
-    logger.log('this is Books for the project', res.data
-    )
-    logger.log(res.request.responseURL)
-    AppState.books = res.data.results
-  }
   async findBooksByQuery(query) {
     const words = query.split(" ");
 
@@ -38,10 +30,10 @@ class ApiService {
       words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
     }
 
-    fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?s=" + words.join('&20') + "&r=json&page=1", {
+    fetch("https://imdb8.p.rapidapi.com/auto-complete?q=" + words.join('%20') + "thr", {
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+		"x-rapidapi-host": "imdb8.p.rapidapi.com",
 		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
 	}
 })
@@ -62,6 +54,26 @@ class ApiService {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "spotify23.p.rapidapi.com",
+		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
+	}
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(err => {
+	console.error(err);
+});
+  }
+  async findGamesByQuery(query){
+    const words = query.split(" ");
+    
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+    }
+
+    fetch("https://steam2.p.rapidapi.com/search/" + words.join('&20') + "/page/1", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "steam2.p.rapidapi.com",
 		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
 	}
 })

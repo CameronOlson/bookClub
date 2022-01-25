@@ -27,6 +27,11 @@ const routes = [
     component: loadPage('MusicPage')
   },
   {
+    path: '/',
+    name: 'Game',
+    component: loadPage('GamePage')
+  },
+  {
     path: '/about',
     name: 'About',
     component: loadPage('AboutPage')
