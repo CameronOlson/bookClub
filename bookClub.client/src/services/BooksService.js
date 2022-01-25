@@ -31,6 +31,26 @@ class BooksService {
     AppState.books = res.data.items
     logger.log("this is appstate.books", AppState.books)
   }
+  async findMoviesByQuery(query){
+    const words = query.split(" ");
+    
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+    }
+
+    fetch("https://movie-database-imdb-alternative.p.rapidapi.com/?s=" + words.join('&20') + "&r=json&page=1", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "movie-database-imdb-alternative.p.rapidapi.com",
+		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
+	}
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(err => {
+	console.error(err);
+});
+  }
 
 }
 export const booksService = new BooksService()
