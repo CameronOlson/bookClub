@@ -30,10 +30,21 @@
   <Modal :id="'book' + book.id">
     <template #modal-title>
       <div>
-        <p>{{ book.volumeInfo.title }}</p>
+        <h1>{{ book.volumeInfo.title }}</h1>
       </div>
     </template>
-    <template #modal-body> </template>
+    <template #modal-body>
+      <div class="row">
+        <div v-if="book.volumeInfo.imageLinks" class="col-6 d-flex text-center">
+          <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" />
+        </div>
+        <div class="col-6">Author - {{ book.volumeInfo.authors[0] }}</div>
+      </div>
+
+      <div class="col-12">
+        <p>{{ book.volumeInfo.description }}</p>
+      </div>
+    </template>
   </Modal>
 </template>
 
