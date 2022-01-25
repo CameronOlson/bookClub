@@ -8,7 +8,7 @@ import { logger } from "../utils/Logger"
 const booksApi = axios.create({
   baseURL: 'https://www.googleapis.com/books/v1/volumes?q='
 })
-class BooksService {
+class ApiService {
   async getBooks() {
     debugger
     const res = await booksApi.get('' + key)
@@ -51,6 +51,26 @@ class BooksService {
 	console.error(err);
 });
   }
+  async findMusicByQuery(query){
+    const words = query.split(" ");
+    
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+    }
+
+    fetch("https://spotify23.p.rapidapi.com/search/?q=" + words.join('&20') + "&type=multi&offset=0&limit=10&numberOfTopResults=5", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "spotify23.p.rapidapi.com",
+		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
+	}
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(err => {
+	console.error(err);
+});
+  }
 
 }
-export const booksService = new BooksService()
+export const apiService = new ApiService()
