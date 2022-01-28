@@ -29,6 +29,11 @@
       </div>
     </div>
   </div>
+  <div class="container-fluid">
+    <div class="mason">
+      <MovieCard v-for="m in movies" :key="m.id" :movie="m" />
+    </div>
+  </div>
 </template>
 
 

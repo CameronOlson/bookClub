@@ -14,8 +14,8 @@
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" />
           </div>
           <div class="col-6">
-            <p>
-              {{ book.volumeInfo.subtitle }}
+            <p v-if="book.searchInfo.textSnippet">
+              {{ book.searchInfo.textSnippet }}
             </p>
           </div>
           <div class="row">

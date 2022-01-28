@@ -7,6 +7,6 @@ export const AppState = reactive({
   books: [],
   book: {},
   movies: [],
-  movie: {},
+  chosenMovie: {},
   music:[]
 })
