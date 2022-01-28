@@ -1,10 +1,10 @@
 <template>
   <div class="component">
-    <div class="container-fluid">
+    <div class="container-fluid bg-black">
       <div class="row">
-        <h1>Movie Page</h1>
+        <h1 class="text-light">Movie Page</h1>
       </div>
-      <div class="row">
+      <div class="row bg-black">
         <div class="col-10 m-auto">
           <form
             @submit.prevent="findMoviesByQuery()"
@@ -29,8 +29,8 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
-    <div class="mason">
+  <div class="container-fluid bg-black">
+    <div class="row">
       <MovieCard v-for="m in movies" :key="m.id" :movie="m" />
     </div>
   </div>
@@ -62,4 +62,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.bg-black {
+  background-color: black;
+}
 </style>

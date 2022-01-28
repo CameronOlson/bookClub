@@ -1,13 +1,31 @@
 <template>
   <div
     @click="getMovieById(movie.imdbID)"
-    class="selectable masonry-card"
+    class="selectable col-4"
     data-bs-toggle="modal"
     :data-bs-target="'#movie' + movie.imdbID"
   >
-    <img :src="movie.Poster" alt="" />
-
-    {{ movie.Title }}
+    <div
+      class="
+        card
+        p-0
+        m-2
+        d-flex
+        justify-content-center
+        align-items-center
+        bg-dark
+        text-light
+      "
+    >
+      <img class="card-img m-1" :src="movie.Poster" alt="" />
+      <div class="">
+        <div>
+          <p>
+            {{ movie.Title }}
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
   <Modal :id="'movie' + movie.imdbID">
     <template #modal-title>
@@ -56,4 +74,18 @@ export default {
 
 
 <style lang="scss" scoped>
+.card-img {
+  height: 30rem;
+  width: 20rem;
+}
+.card-text {
+  position: absolute;
+  color: aliceblue;
+  z-index: 1;
+  transform: translateY(30rem);
+  background-color: black;
+  font-size: 12px;
+}
+.card-layout {
+}
 </style>
