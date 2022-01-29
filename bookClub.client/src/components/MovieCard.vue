@@ -29,16 +29,19 @@
   </div>
   <Modal :id="'movie' + movie.imdbID">
     <template #modal-title>
-      <div>
-        <h1>{{ movie.Title }}</h1>
-        <div>{{ chosenMovie.Actors }}</div>
-      </div>
+      <h1>{{ movie.Title }}</h1>
     </template>
     <template #modal-body>
-      <div>
-        <p>
-          {{ chosenMovie.Plot }}
-        </p>
+      <div class="row">
+        <div class="col-6 center">
+          <img :src="chosenMovie.Poster" alt="" />
+        </div>
+        <div class="col-6">
+          <p>
+            {{ chosenMovie.Plot }}
+          </p>
+          <div>{{ chosenMovie.Actors }}</div>
+        </div>
       </div>
     </template>
   </Modal>
@@ -86,6 +89,8 @@ export default {
   background-color: black;
   font-size: 12px;
 }
-.card-layout {
+.center {
+  display: flex;
+  justify-content: center;
 }
 </style>

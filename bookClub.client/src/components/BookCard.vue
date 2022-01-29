@@ -13,8 +13,8 @@
           <div class="col-6" v-if="book.volumeInfo.imageLinks">
             <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" />
           </div>
-          <div class="col-6">
-            <p v-if="book.searchInfo.textSnippet">
+          <div v-if="book.searchInfo" class="col-6">
+            <p>
               {{ book.searchInfo.textSnippet }}
             </p>
           </div>
@@ -28,21 +28,22 @@
     </div>
   </div>
   <Modal :id="'book' + book.id">
-    <template #modal-title>
-      <div>
-        <h1>{{ book.volumeInfo.title }}</h1>
-      </div>
-    </template>
     <template #modal-body>
       <div class="row">
-        <div v-if="book.volumeInfo.imageLinks" class="col-6 d-flex text-center">
+        <div v-if="book.volumeInfo.imageLinks" class="col-2">
           <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" />
         </div>
-        <div class="col-6">Author - {{ book.volumeInfo.authors[0] }}</div>
-      </div>
-
-      <div class="col-12">
-        <p>{{ book.volumeInfo.description }}</p>
+        <div class="col-2"></div>
+        <div class="col-6 text-center pt-2">
+          <strong>{{ book.volumeInfo.title }}</strong>
+        </div>
+        <div class="col-2"></div>
+        <div v-if="book.volumeInfo.authors" class="col-6">
+          <p>
+            Author - {{ book.volumeInfo.authors[0] }} <br /><br />
+            {{ book.volumeInfo.description }}
+          </p>
+        </div>
       </div>
     </template>
   </Modal>
