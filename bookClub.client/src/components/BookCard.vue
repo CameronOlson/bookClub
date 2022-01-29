@@ -30,19 +30,23 @@
   <Modal :id="'book' + book.id">
     <template #modal-body>
       <div class="row">
-        <div v-if="book.volumeInfo.imageLinks" class="col-2">
-          <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" />
-        </div>
-        <div class="col-2"></div>
-        <div class="col-6 text-center pt-2">
+        <div class="col-12 text-center">
           <strong>{{ book.volumeInfo.title }}</strong>
         </div>
-        <div class="col-2"></div>
-        <div v-if="book.volumeInfo.authors" class="col-6">
-          <p>
-            Author - {{ book.volumeInfo.authors[0] }} <br /><br />
-            {{ book.volumeInfo.description }}
-          </p>
+        <div v-if="book.volumeInfo.imageLinks" class="col-12 text-center">
+          <img :src="book.volumeInfo.imageLinks.thumbnail" alt="" />
+        </div>
+
+        <div class="col-6">Rating {{ book.volumeInfo.averageRating }}/5</div>
+        <div class="col-6">
+          <div v-if="book.volumeInfo.authors">
+            <p>Author - {{ book.volumeInfo.authors[0] }} <br /><br /></p>
+          </div>
+        </div>
+
+        <div class="col-10 m-auto text-center scroll-box">
+          <strong>About</strong> <br />
+          {{ book.volumeInfo.description }}
         </div>
       </div>
     </template>
@@ -70,5 +74,10 @@ export default {
 .masonry-card {
   display: inline-block;
   width: 100%;
+}
+.scroll-box {
+  max-height: 20rem;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 </style>
