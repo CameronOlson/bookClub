@@ -1,13 +1,13 @@
 <template>
   <div
-    class="modal"
+    class="modal small-box"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog">
       <div class="modal-content">
-        <div class="modal-body p-0">
+        <div class="modal-body pt-1">
           <slot name="modal-body"> </slot>
           <button
             type="button"
@@ -32,4 +32,9 @@ export default {
 
 
 <style lang="scss" scoped>
+.small-box {
+  max-height: 40rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 </style>
