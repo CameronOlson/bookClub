@@ -27,7 +27,7 @@
       </div>
     </div>
   </div>
-  <Modal :id="'movie' + movie.imdbID">
+  <MovieModal :id="'movie' + movie.imdbID">
     <template #modal-title>
       <h1>{{ movie.Title }}</h1>
     </template>
@@ -44,7 +44,7 @@
         </div>
       </div>
     </template>
-  </Modal>
+  </MovieModal>
 </template>
 
 

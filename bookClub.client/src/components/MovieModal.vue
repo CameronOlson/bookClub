@@ -1,20 +1,26 @@
-<template>
+
+  <template>
   <div
-    class="modal small-box text-light"
+    class="modal fade"
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
   >
-    <div class="modal-dialog">
-      <div class="modal-content bg-dark">
-        <div class="modal-body pt-1">
-          <slot name="modal-body"> </slot>
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content bg-dark text-light">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+            <slot name="modal-title"></slot>
+          </h5>
           <button
             type="button"
             class="btn-close"
             data-bs-dismiss="modal"
             aria-label="Close"
           ></button>
+        </div>
+        <div class="modal-body">
+          <slot name="modal-body"></slot>
         </div>
       </div>
     </div>
@@ -32,9 +38,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.small-box {
-  max-height: 40rem;
-  overflow-x: hidden;
-  overflow-y: hidden;
+.big-modal {
+  width: 60rem;
 }
 </style>
