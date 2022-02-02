@@ -27,6 +27,7 @@
           </form>
         </div>
       </div>
+      <GameCard v-for="g in games" :key="g.id" :game="g" />
     </div>
   </div>
 </template>
@@ -42,6 +43,7 @@ export default {
     const query = ref('')
     return {
       query,
+      games: computed(() => AppState.games),
       movies: computed(() => AppState.movies),
       async findGamesByQuery() {
         try {

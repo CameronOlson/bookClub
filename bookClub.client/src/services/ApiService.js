@@ -79,18 +79,17 @@ class ApiService {
       words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
     }
 
-    fetch("https://steam2.p.rapidapi.com/search/" + words.join('&20') + "/page/1", {
+   let res = await fetch("https://steam2.p.rapidapi.com/search/" + words.join('&20') + "/page/1", {
 	"method": "GET",
+  // these headers can be imported from axios
 	"headers": {
 		"x-rapidapi-host": "steam2.p.rapidapi.com",
 		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
 	}
 })
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(err => {
-	console.error(err);
-});
+let data = await res.json()
+AppState.games = data
+logger.log('this is AppState.games', AppState.games)
   }
 
 }
