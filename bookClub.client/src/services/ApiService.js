@@ -53,8 +53,7 @@ class ApiService {
     }
     const res = await musicApi.get('' + '/api/v1/json/2/search.php?s=' + words.join('_')
     )
-    logger.log(res.data)
-    AppState.musics = res.data
+    AppState.musics = res.data.artists
     logger.log('this is appstate.musics', AppState.musics)
   }
   async getMusicDiscography(query){
@@ -63,7 +62,7 @@ class ApiService {
       words[i] = words[i][0].toLowerCase() + words[i].substr(1).toLowerCase();
     }
     const res = await musicApi('' + '/api/v1/json/' + musicKey +'/searchalbum.php?s=' + words.join('_'))
-    AppState.albums = res.data
+    AppState.albums = res.data.album
     logger.log('albums for the artist Appstate', AppState.albums)
   }
   async getMovieById(movieId){

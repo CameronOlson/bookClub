@@ -2,11 +2,11 @@
   <header>
     <Navbar />
   </header>
-  <main>
+  <main class="bg-black">
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4"></div>
+    <div class="bg-black text-light text-center p-4"></div>
   </footer>
 </template>
 

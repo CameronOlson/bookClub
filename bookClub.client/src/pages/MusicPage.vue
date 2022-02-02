@@ -1,5 +1,5 @@
 <template>
-  <div class="component">
+  <div class="component bg-black">
     <div class="container-fluid">
       <div class="row">
         <h1>Movie Page</h1>
@@ -27,6 +27,14 @@
           </form>
         </div>
       </div>
+      <div class="col-12">
+        <div class="row p1 col-10 m-auto banner-background">
+          <ArtistCard v-for="m in musics" :key="m.idArtist" :artist="m" />
+        </div>
+        <div class="row col-10 m-auto flex-wrap banner-background">
+          <AlbumCard v-for="a in albums" :key="a.idAlbum" :album="a" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -42,7 +50,7 @@ export default {
     const query = ref('')
     return {
       query,
-      music: computed(() => AppState.movies),
+      musics: computed(() => AppState.musics),
       albums: computed(() => AppState.albums),
       async findMusicByQuery() {
         try {
@@ -65,4 +73,18 @@ export default {
 
 
 <style lang="scss" scoped>
+.bg-black {
+  background-color: black;
+}
+.banner-background {
+  background: rgb(91, 1, 1);
+  background: linear-gradient(
+    90deg,
+    rgba(91, 1, 1, 1) 0%,
+    rgba(8, 0, 0, 1) 10%,
+    rgba(0, 0, 0, 1) 85%,
+    rgba(110, 0, 0, 1) 100%,
+    rgba(62, 0, 0, 1) 100%
+  );
+}
 </style>
