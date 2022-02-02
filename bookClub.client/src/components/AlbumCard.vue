@@ -1,8 +1,9 @@
 <template>
   <div class="col-4">
     <img
+      class="pt-3 rounded-edge"
       style="height: 100%; width: 100%; object-fit: contain"
-      :src="album.strAlbumCDart"
+      :src="album.strAlbumThumb"
       alt=""
     />
   </div>
@@ -25,4 +26,7 @@ export default {
 
 
 <style lang="scss" scoped>
+.rounded-edge {
+  border-radius: 2rem;
+}
 </style>
