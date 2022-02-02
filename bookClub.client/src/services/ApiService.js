@@ -79,14 +79,13 @@ class ApiService {
       words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
     }
 
-   let res = await fetch("https://steam2.p.rapidapi.com/search/" + words.join('&20') + "/page/1", {
-	"method": "GET",
-  // these headers can be imported from axios
-	"headers": {
-		"x-rapidapi-host": "steam2.p.rapidapi.com",
-		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
-	}
-})
+    let res = await fetch("https://api.rawg.io/api/platforms?key=e5ec73e311854a789364f9d1f47d51a7", {
+      "method": "GET",
+      // "headers": {
+      //   "x-rapidapi-host": "rawg-video-games-database.p.rapidapi.com",
+      //   "x-rapidapi-key": "e5ec73e311854a789364f9d1f47d51a7"
+      // }
+    })
 let data = await res.json()
 AppState.games = data
 logger.log('this is AppState.games', AppState.games)

@@ -1,19 +1,16 @@
 <template>
   <div
-    class="selectable"
+    class="selectable col-4"
     data-bs-toggle="modal"
     :data-bs-target="'#album' + album.idAlbum"
   >
-    <div class="col-4">
-      <img
-        class="pt-3 rounded-edge"
-        style="height: 100%; width: 100%; object-fit: contain"
-        :src="album.strAlbumThumb"
-        alt=""
-      />
-    </div>
+    <img
+      class="pt-3 rounded-edge"
+      style="height: 100%; width: 100%; object-fit: contain"
+      :src="album.strAlbumThumb"
+      alt=""
+    />
   </div>
-  <MovieModal :id="album" + album.idAlbum />
 </template>
 
 

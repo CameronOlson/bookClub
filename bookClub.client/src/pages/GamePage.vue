@@ -27,7 +27,7 @@
           </form>
         </div>
       </div>
-      <GameCard v-for="g in games" :key="g.id" :game="g" />
+      <!-- <GameCard v-for="g in games" :key="g.id" :game="g" /> -->
     </div>
   </div>
 </template>
