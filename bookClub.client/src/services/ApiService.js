@@ -2,6 +2,7 @@ import axios from "axios"
 import { AppState } from "../AppState"
 import {googleApi} from '../env'
 import{key} from '../env'
+import { musicKey } from "../env"
 import{movieKey} from '../env'
 import { logger } from "../utils/Logger"
 
@@ -11,6 +12,9 @@ const booksApi = axios.create({
 })
 const movieApi = axios.create({
   baseURL: 'http://www.omdbapi.com/'
+})
+const musicApi = axios.create({
+  baseURL: 'https://www.theaudiodb.com'
 })
 class ApiService {
   async findBooksByQuery(query) {
@@ -41,32 +45,34 @@ class ApiService {
 
 
   }
+  async findMusicByQuery(query){
+    this.getMusicDiscography(query)
+    const words = query.split(" ");
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toLowerCase() + words[i].substr(1).toLowerCase();
+    }
+    const res = await musicApi.get('' + '/api/v1/json/2/search.php?s=' + words.join('_')
+    )
+    logger.log(res.data)
+    AppState.musics = res.data
+    logger.log('this is appstate.musics', AppState.musics)
+  }
+  async getMusicDiscography(query){
+    const words = query.split(" ");
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i][0].toLowerCase() + words[i].substr(1).toLowerCase();
+    }
+    const res = await musicApi('' + '/api/v1/json/' + musicKey +'/searchalbum.php?s=' + words.join('_'))
+    AppState.albums = res.data
+    logger.log('albums for the artist Appstate', AppState.albums)
+  }
   async getMovieById(movieId){
     debugger
     const res = await movieApi.get(''+movieKey+'&i=' + movieId+'&plot=full')
     AppState.chosenMovie = res.data
     logger.log(res.data)
   }
-  async findMusicByQuery(query){
-    const words = query.split(" ");
-    
-    for (let i = 0; i < words.length; i++) {
-      words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
-    }
 
-    fetch("https://spotify23.p.rapidapi.com/search/?q=" + words.join('&20') + "&type=multi&offset=0&limit=10&numberOfTopResults=5", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "spotify23.p.rapidapi.com",
-		"x-rapidapi-key": "304ef84d04msh3e1047954e051bfp12a5fejsn5851e54f98df"
-	}
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(err => {
-	console.error(err);
-});
-  }
   async findGamesByQuery(query){
     const words = query.split(" ");
     

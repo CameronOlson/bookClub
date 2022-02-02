@@ -43,6 +43,7 @@ export default {
     return {
       query,
       music: computed(() => AppState.movies),
+      albums: computed(() => AppState.albums),
       async findMusicByQuery() {
         try {
           await apiService.findMusicByQuery(query.value)
@@ -50,6 +51,13 @@ export default {
           Pop.toast(error, error)
         }
       }
+      // async findAlbumsByQuery() {
+      //   try {
+      //     await apiService.getMusicDiscography(query.value)
+      //   } catch (error) {
+      //     Pop.toast(error, )
+      //   }
+      // }
     }
   }
 }
